@@ -26,9 +26,9 @@ public class PlayerReport extends Report {
 		StringBuffer header = new StringBuffer();
 				
 		header.append("\n\n\n");
-		header.append("+======================================================================+");
-		header.append("|   PLAYER REPORT                                     |");
-		header.append("+======================================================================+");
+		header.append("+======================================================================+\n");
+		header.append("|   PLAYER REPORT                                                      |\n");
+		header.append("+======================================================================+\n");
 
 		header.append("\n  ID:\t" + player.getId());
 		header.append("\n  NAME:\t" + player.getName());

@@ -23,12 +23,12 @@ public class RankReport extends Report {
 		StringBuffer body = new StringBuffer();
 		
 		header.append("\n\n\n");
-		header.append("+======================================================================+");
-		header.append("| RANK REPORT =  ALL PLAYERS RANKED BY ELO RATING                      |                                        |");
-		header.append("+======================================================================+");
+		header.append("+======================================================================+\n");
+		header.append("| RANK REPORT =  ALL PLAYERS RANKED BY ELO RATING                      |\n");
+		header.append("+======================================================================+\n");
 
-		header.append("RANK\tELO_RATING\tWINS\tLOSSES\tMATCHES\tID\tPLAYER_NAME\t");
-		header.append("====\t==========\t====\t======\t=======\t==\t============");
+		header.append("RANK\tELO_RATING\tWINS\tLOSSES\tMATCHES\tID\tPLAYER_NAME\n");
+		header.append("====\t==========\t====\t======\t=======\t==\t===========\n");
 		
 		System.out.println(header);
 		

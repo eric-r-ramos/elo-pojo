@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,7 +62,15 @@ public class Championship {
 	 * @return the Player
 	 */
 	public Player getPlayer(String name){
-		return players.values().stream().filter(p -> p.getName().equals(name)).findFirst().get();
+		Player player;
+		try{
+			player = players.values().stream().filter(p -> p.getName().equals(name)).findFirst().get();
+		}catch (NoSuchElementException e) {
+			
+			throw new NoSuchElementException("Could not find player with given name");
+		}
+		
+		return player;
 		
 	}
 	

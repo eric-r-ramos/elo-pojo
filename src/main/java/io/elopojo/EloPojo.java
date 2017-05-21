@@ -23,31 +23,39 @@ public class EloPojo {
 	static Championship championship;
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		if(args.length < 3){
-			System.out.println("Illegal arguments were found. "
-					+ "\nUse java EloPojo <file_players> <file_matches> <[rank] | [player <player_name> | [next_matches] | [matches] >"
-					+ "\nwhere:"
-					+ "\n\tfile_players: \tplain file where each line has an ID number and a name for said ID"
-					+ "\n\tfile_matches: \tplain file where each line contains the ID of the two players of a match and the first one is the winner of said match. with id matches"
-					+ "\n\treport_type: \tuse the string:"
-					+ "\n\t\trank --> for list players ordered for thei rating"
-					+ "\n\t\tplayer <player_name>"
-					+ "\n\t\tnext_matches for list of suggested next matches"
-					+ "\n\t\tmatches for list of matches"
-	
-					);
-			System.exit(0);
+		
+		try{
+			if(args.length < 3){
+				System.out.println("Illegal arguments were found. "
+						+ "\nUse java EloPojo <file_players> <file_matches> <[rank] | [player <player_name> | [next_matches] | [matches] >"
+						+ "\nwhere:"
+						+ "\n\tfile_players: \tplain file where each line has an ID number and a name for said ID"
+						+ "\n\tfile_matches: \tplain file where each line contains the ID of the two players of a match and the first one is the winner of said match. with id matches"
+						+ "\n\treport_type: \tuse the string:"
+						+ "\n\t\trank --> for list players ordered for thei rating"
+						+ "\n\t\tplayer <player_name>"
+						+ "\n\t\tnext_matches for list of suggested next matches"
+						+ "\n\t\tmatches for list of matches"
+		
+						);
+				System.exit(0);
+			}
+			 
+			
+			championship = new Championship();
+			FileLoader fileLoader = new FileLoader(championship);
+			fileLoader.loadPlayers(args[0]);
+			fileLoader.loadMatches(args[1]);
+			
+			Report report = reportBuilder(args);
+			report.print();
+			
+		}catch (Exception e) {
+			System.out.println("An Error has occured while executing the appication");
+			System.out.println("Error Message: \t" + e.getMessage());
+			System.exit(1);
 		}
-		 
-		
-		championship = new Championship();
-		FileLoader fileLoader = new FileLoader(championship);
-		fileLoader.loadPlayers(args[0]);
-		fileLoader.loadMatches(args[1]);
-		
-		Report report = reportBuilder(args);
-		report.print();
-		 
+			 
 	}
 
 	private static Report reportBuilder(String args[]) {

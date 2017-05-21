@@ -27,9 +27,9 @@ public class NextMatchesReport extends Report {
 
 		
 		header.append("\n\n\n");
-		header.append("+======================================================================+");
-		header.append("|SUGGESTED NEXT MATCHES REPORT                                         |");
-		header.append("+======================================================================+");
+		header.append("+======================================================================+\n");
+		header.append("|SUGGESTED NEXT MATCHES REPORT                                         |\n");
+		header.append("+======================================================================+\n");
 
 		System.out.println(header);
 
@@ -41,12 +41,12 @@ public class NextMatchesReport extends Report {
 			body.append(" [rating: "  + m.getPlayer1().getRating() + "]");
 			body.append(" versus ");
 			body.append(m.getPlayer2().getName());
-			body.append(" [matches: "  + m.getPlayer1().getAmountMatches() + "]");
-			body.append(" [rating: " + m.getPlayer1().getRating() + "]\n");
+			body.append(" [matches: "  + m.getPlayer2().getAmountMatches() + "]");
+			body.append(" [rating: " + m.getPlayer2().getRating() + "]\n");
 			
 			
 			});
-		System.out.println(header);
+		System.out.println(body);
 
 	}
 }

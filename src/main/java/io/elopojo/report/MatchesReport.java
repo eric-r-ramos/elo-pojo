@@ -33,12 +33,12 @@ public class MatchesReport extends Report {
 		StringBuffer body = new StringBuffer();
 		
 		header.append("\n\n\n");
-		header.append("+======================================================================+");
-		header.append("|MATCHES REPORT =  ALL PLAYERS ORDERED BY AMOUT OF MATCHES             |");
-		header.append("+======================================================================+");
+		header.append("+======================================================================+\n");
+		header.append("|MATCHES REPORT =  ALL PLAYERS ORDERED BY AMOUT OF MATCHES             |\n");
+		header.append("+======================================================================+\n");
 		
-		header.append("ELO_RATING\tID\tWINS\tLOSSES\tMATCHES\tSPLAYER_NAME\t");
-		header.append("==========\t==\t====\t======\t=======\t============");
+		header.append("ELO_RATING\tID\tWINS\tLOSSES\tMATCHES\tSPLAYER_NAME\n");
+		header.append("==========\t==\t====\t======\t=======\t============\n");
 		
 		System.out.println(header);
 		
@@ -53,7 +53,7 @@ public class MatchesReport extends Report {
 			
 		});
 		
-		System.out.println(header);
+		System.out.println(body);
 		
 	}
 	
