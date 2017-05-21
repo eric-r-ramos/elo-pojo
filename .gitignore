@@ -1,0 +1,6 @@
+/target/
+/.classpath
+/.project
+/names.txt
+/matches.txt
+/.DS_Store
