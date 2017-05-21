@@ -1,15 +1,16 @@
 package io.elopojo.core;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-
+/**
+ * Entity class for Player
+ * 
+ * @author ericramos
+ *
+ */
 public class Player {
-	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	
 	private static final int INITIAL_RATING = 2000;
 	private int id;
@@ -130,6 +131,11 @@ public class Player {
 		return defeats;
 	}
 
+	/**
+	 * Add match for the player adjusting the scoreboard 
+	 * 
+	 * @param match
+	 */
 	public void addMatch(Match match) {
 		matches.add(match);
 		amountMatches++;
@@ -143,30 +149,13 @@ public class Player {
 	}
 	
 
-	
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + ", victories=" + victories + ", defeats=" + defeats + ", rating="
 				+ rating + "]";
 	}
 
-	
-	
-	/**
-	 * Implementation of Comparator to provide order by rating in descending order
-	 */
-	public static Comparator<Player> PlayerRatingComparator = new Comparator<Player>() {
-
-	    public int compare(Player player1, Player player2) {
-	        //descending order
-	    	return  player2.getRating() - player1.getRating();
-	    	
-	    }
-
-	};
-
-
-
-	
 
 }

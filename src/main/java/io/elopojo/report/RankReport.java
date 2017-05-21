@@ -1,7 +1,6 @@
 package io.elopojo.report;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import io.elopojo.core.Championship;
@@ -18,36 +17,35 @@ public class RankReport extends Report {
 		
 		
 		List<Player> list = new ArrayList<Player>(championship.getPlayers().values());
-		Collections.sort(list, Player.PlayerRatingComparator);
 		list.sort((left, right) -> right.getRating() - left.getRating());
-		//list.sort((left, right) -> right.getAmountMatches() - left.getAmountMatches());
 		
+		StringBuffer header = new StringBuffer();
+		StringBuffer body = new StringBuffer();
 		
-		System.out.println("\n\n\n");
-		System.out.println("+======================================================================+");
-		System.out.println("|RANK REPORT =  ALL PLAYERS RANKED BY ELO RATING                       |");
-		System.out.println("+======================================================================+");
+		header.append("\n\n\n");
+		header.append("+======================================================================+");
+		header.append("| RANK REPORT =  ALL PLAYERS RANKED BY ELO RATING                      |                                        |");
+		header.append("+======================================================================+");
+
+		header.append("RANK\tELO_RATING\tWINS\tLOSSES\tMATCHES\tID\tPLAYER_NAME\t");
+		header.append("====\t==========\t====\t======\t=======\t==\t============");
 		
-		System.out.println("RANK\tELO_RATING\tWINS\tLOSSES\tMATCHES\tID\tPLAYER_NAME\t");
-		System.out.println("====\t==========\t====\t======\t=======\t==\t============");
+		System.out.println(header);
 		
 		int rank = 1;
 		for (Player player : list) {
-			System.out.print("#"+ rank++ + "\t");
-			System.out.print(player.getRating() + "\t\t");
-			System.out.print(player.getVictories() + "\t");
-			System.out.print(player.getDefeats() + "\t");
-			System.out.print(player.getAmountMatches()+ "\t");
-			System.out.print(player.getId() + "\t");
-			System.out.print(player.getName() + "\n");
-			
+			body.append("#"+ rank++ + "\t");
+			body.append(player.getRating() + "\t\t");
+			body.append(player.getVictories() + "\t");
+			body.append(player.getDefeats() + "\t");
+			body.append(player.getAmountMatches()+ "\t");
+			body.append(player.getId() + "\t");
+			body.append(player.getName() + "\n");
 		}
 
-
+		System.out.println(body);
 		
 	}
-	
-	
 	
 
 }

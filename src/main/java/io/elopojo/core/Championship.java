@@ -8,20 +8,43 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 
+ * The championship class is used to store all players at that championship and it responsible to 
+ * adjust the scoreborad and rank for every match tha happens
+ * 
+ * @author ericramos
+ *
+ */
 @Slf4j
 public class Championship {
 	
 	
+	/**
+	 * store players
+	 */
 	private Map<Integer, Player> players;
+	
+	
+	/**
+	 * stor matches 
+	 */
 	private List<Match> matches;
 	
 	
+	/**
+	 *  Constructor for Championship
+	 */
 	public Championship(){
 		players = new HashMap<Integer, Player>();
 		matches = new ArrayList<Match>();
 		log.info("A new Championship has been started");
 	}
 	
+	/**
+	 * Add new player for the Championship 
+	 * @param player
+	 */
 	public void addPlayer(Player player) {
 		Player p = players.get(player.getId());
 		if (p == null){
@@ -30,15 +53,36 @@ public class Championship {
 	}
 
 	
+	/**
+	 * Get a player for a given name. If there is more than one player 
+	 * with the same name, the fist one is returned
+	 * 
+	 * @param name of player you want to get
+	 * @return the Player
+	 */
 	public Player getPlayer(String name){
 		return players.values().stream().filter(p -> p.getName().equals(name)).findFirst().get();
 		
 	}
 	
+	/**
+	 * Get a player for a given id.
+	 *  
+	 * @param id Id of player you want to get
+	 * @return the Player
+	 */
 	public Player getPlayer(int id) {
 		return players.get(new Integer(id));
 	}
 
+	
+	/**
+	 * Add a Match for the Championship adjusting the scoreboad and the rating for the
+	 * players on that match
+	 * 
+	 * @param match A Match with 2 players and the winner expressed
+	 * @throws IllegalStateException If the players list had no element. Add players before add matches
+	 */
 	public void addMatch(Match match) {
 		validateMatchArguments(match);
 		
@@ -54,6 +98,14 @@ public class Championship {
 		
 	}
 
+	
+	
+	/**
+	 *  validate if there is players in the player list and if those players from this match is 
+	 *  alredy added on the Championship
+	 *   
+	 * @param match Match with players
+	 */
 	private void validateMatchArguments(Match match) {
 		if((players==null || players.size()==0)){
 			throw new IllegalStateException(
@@ -72,6 +124,11 @@ public class Championship {
 		
 	}
 
+	
+	/**
+	 * Adjust rating (the ELO-RATING) for the both players on the Match
+	 * @param match The match with both players and the winner
+	 */
 	private void adjustRating(Match match) {
 		Player p1 = getPlayer(match.getPlayer1().getId());
 		Player p2 = getPlayer(match.getPlayer2().getId());
@@ -91,11 +148,20 @@ public class Championship {
 		
 	}
 
-	
+	/**
+	 * Get the Players added to the Championship
+	 * 
+	 * @return
+	 */
 	public Map<Integer, Player> getPlayers() {
 		return players;
 	}
 
+	
+	/**
+	 * Get the Matches added to the Championship 
+	 * @return
+	 */
 	public List<Match> getMatches() {
 		return matches;
 	}
@@ -103,9 +169,15 @@ public class Championship {
 	
 	
 	/**
-	 * The next match shoud be between the players that has less matches in this championship
+	 * The list os suggested matches is using the pairing algorithm with some modifications
+	 * Pairing algorithm - our current algorithm recognizes two imperatives:
+	 *	  Give more duels to entries that have had less duels so far
+     *    Match people with similar ratings with higher probability
+     *    
+     * To solve it, the list of players is ordered by matches of each player, followed by rating in ascending order
+     * Then it is organized in plairs following this order
 	 * 
-	 * @return a list with two players for the next match
+	 * @return a list of matchs with two players 
 	 */
 	public List<Match> nextMatch(){
 		
@@ -137,6 +209,10 @@ public class Championship {
 		
 	}
 
+	/**
+	 *  Sort players by amount of matches and their rating
+	 * @param players
+	 */
 	private void sortPlayerByMatchesRating(List<Player> players) {
 		//order by  matches, rating 
 		players.sort((left, right) ->  {

@@ -3,17 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.elorating</groupId>
 	<artifactId>elo-pojo</artifactId>
-
 	<version>0.0.1</version>
+	<packaging>maven-plugin</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-	    <maven.compiler.source>1.8</maven.compiler.source>
-	    <maven.compiler.target>1.8</maven.compiler.target>
+		<project.url>http://github.com./eric-r-ramos/elo-pojo</project.url>
 	</properties>
-	
 
 	<dependencies>
 		<dependency>
@@ -45,46 +43,27 @@
 
 	</dependencies>
 
-	<build>
+	<build> 
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.0.2</version>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
 					<archive>
+						<index>true</index>
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>io.elopojo.EloPojo</mainClass>
-							<classpathPrefix>dependency-jars/</classpathPrefix>
 						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>${project.url}</url>
+							<key>value</key>
+						</manifestEntries>
 					</archive>
 				</configuration>
 			</plugin>
-
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.5.1</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>
-								${project.build.directory}/dependency-jars/
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
 

@@ -6,6 +6,14 @@ import java.math.MathContext;
 import lombok.extern.slf4j.Slf4j;
 
 
+/**
+ * 
+ * This static class implements the Elo Rating Algorothm
+ * @see https://en.wikipedia.org/wiki/Elo_rating_system
+ * 
+ * @author ericramos
+ *
+ */
 @Slf4j
 public class EloRating {
 	
@@ -80,7 +88,13 @@ public class EloRating {
 			return 32;
 		}
 		return kFactor;
-		
+	}
+	
+	/**
+	 * set diferent K
+	 */
+	public static void setKFacttor(int k){
+		kFactor = k;
 	}
 
 	

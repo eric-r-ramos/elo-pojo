@@ -1,13 +1,24 @@
 package io.elopojo.core;
 
-
-
+/**
+ * Entity class for Match
+ * 
+ * @author ericramos
+ *
+ */
 public class Match {
 	
 	private Player player1;
 	private Player player2;
 	private Player winner;
 	
+	/**
+	 * Constructor with players and winner
+	 * 
+	 * @param p1
+	 * @param p2
+	 * @param w
+	 */
 	public Match( Player p1, Player p2, Player w){
 		this.player1 = p1; 
 		this.player2 = p2;
@@ -71,6 +82,12 @@ public class Match {
 		this.winner = winner;
 	}
 
+	/**
+	 * Return a adversary of a given player
+	 * 
+	 * @param player
+	 * @return the player adversary
+	 */
 	public Player getAdversary(Player player) {
         if (player1.equals(player)) {
         	return player2;
