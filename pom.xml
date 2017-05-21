@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.elorating</groupId>
 	<artifactId>elo-pojo</artifactId>
+	
 	<version>0.0.1</version>
 
 	<properties>
@@ -40,35 +41,27 @@
 		</dependency>
 
 	</dependencies>
+	
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-					<archive>
-						<manifest>
-							<mainClass>io.elopojo.EloPojo</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>	
+          	<manifest>
+          		<mainClass>io.elopojo.EloPojo</mainClass>
+          	</manifest>
+            </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+	
+	
+	
+	
+	
 
 </project>
