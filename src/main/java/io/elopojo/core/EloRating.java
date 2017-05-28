@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * This static class implements the Elo Rating Algorothm
- * @see https://en.wikipedia.org/wiki/Elo_rating_system
+ * @see http://en.wikipedia.org/wiki/Elo_rating_system
  * 
  * @author ericramos
  *
@@ -17,26 +17,29 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EloRating {
 	
-	public static int kFactor = 0;
+	private static int kFactor = 0;
 
 	/**
 	 * This method represents the core equation of ELO-Rating. 
 	 * Given a a player and a match, this function returns the elo rating for this player 
 	 * after the match
-	 * 
-	 * 
-	 * R' = R + (K * (S(p1) – E(p1,p2)))
-	 * 
+	 *
+	 *
+	 * R' = R + (K * (S(p1) &ndash; E(p1,p2)))
+	 *
 	 * where:
 	 * p1 is the player
 	 * p2 is the adversary
 	 * K is the adjust factor
-	 * 
+	 *
 	 * S(p1) = Score of the player in this match --> 1 for winner, 0 for loser
 	 * E(p1, p2) = Expected rating for player versus his adversary 
-	 * 
-	 * @param player the player we want to calc the rating
-	 * @param match with 2 players and the results (winner)
+	 *
+	 * @param ratingP1 the actual rating of player 1 - the player that we want to calc the  new rating
+	 * @param ratingP2 the actual rating of player 2 - the adversary of player 1 on the match
+	 * @param score the result of match - 1 for win, 0 for lose.
+	 *
+	 * @return the new rating for player 1
 	 */
 	public static int getRating(int ratingP1, int ratingP2, int score){
 		log.debug("Calc rating for match: player with rating {} "
@@ -49,6 +52,8 @@ public class EloRating {
 	}
 
 
+	
+	
 
 
 	/**
